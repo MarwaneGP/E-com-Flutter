@@ -23,7 +23,5 @@ class ProductModel extends Product {
       description: map['description'] ?? '',
       category: map['category'] ?? '',
     );
-  }
+  }}
 
-  Map<String, dynamic> toMap() => super.toMap();
-}
