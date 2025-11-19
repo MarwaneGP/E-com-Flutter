@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2275955404",
+    "project_id": "mvvm-iim-pro",
+    "storage_bucket": "mvvm-iim-pro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2275955404:android:a8cdcadd7cf7d8ce372869",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcQXHEhHAGkwRXNMNhFXroWkVlTOPYe2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
