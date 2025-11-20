@@ -1,2 +1,10 @@
-export 'pwa_install_service_stub.dart' if (dart.library.html) 'pwa_install_service_web.dart';
+import 'package:flutter/foundation.dart';
 
+class PwaInstallService {
+  static final ValueNotifier<bool> installAvailable =
+      ValueNotifier<bool>(kIsWeb);
+
+  static void init() {}
+
+  static Future<bool> promptInstall() async => false;
+}
