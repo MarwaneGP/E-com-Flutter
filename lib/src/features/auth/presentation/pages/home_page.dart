@@ -1,7 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_application_1/src/core/services/pwa_install_service.dart';
 import 'package:flutter_application_1/src/core/widgets/shop_scaffold.dart';
 import '../viewmodels/auth_view_model.dart';
 
@@ -31,10 +33,30 @@ class HomePage extends StatelessWidget {
               onPressed: () => context.go('/catalog'),
               child: const Text('Voir le catalogue'),
             ),
+            if (kIsWeb)
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: FilledButton.icon(
+                  onPressed: () async {
+                    final success = await PwaInstallService.promptInstall();
+                    if (!success) {
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Installe manuellement via le menu du navigateur',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.download),
+                  label: const Text('Installer la version web'),
+                ),
+              ),
           ],
         ),
       ),
     );
   }
 }
-

@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'src/core/routing/app_router.dart';
+import 'src/core/services/pwa_install_service.dart';
 import 'src/features/auth/data/repositories/firebase_auth_repository.dart';
 import 'src/features/auth/domain/repositories/auth_repository.dart';
 import 'src/features/auth/presentation/viewmodels/auth_view_model.dart';
@@ -73,4 +75,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
