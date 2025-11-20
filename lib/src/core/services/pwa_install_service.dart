@@ -6,5 +6,8 @@ class PwaInstallService {
 
   static void init() {}
 
-  static Future<bool> promptInstall() async => false;
+  static Future<bool> promptInstall() async {
+    if (!kIsWeb) return false;
+    return true;
+  }
 }
