@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -33,27 +32,34 @@ class HomePage extends StatelessWidget {
               onPressed: () => context.go('/catalog'),
               child: const Text('Voir le catalogue'),
             ),
-            if (kIsWeb)
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: FilledButton.icon(
-                  onPressed: () async {
-                    final success = await PwaInstallService.promptInstall();
-                    if (!success) {
-                      if (!context.mounted) return;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Installe manuellement via le menu du navigateur',
+            ValueListenableBuilder<bool>(
+              valueListenable: PwaInstallService.installAvailable,
+              builder: (context, canInstall, _) {
+                if (!canInstall) {
+                  return const SizedBox.shrink();
+                }
+                return Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: FilledButton.icon(
+                    onPressed: () async {
+                      final success = await PwaInstallService.promptInstall();
+                      if (!success) {
+                        if (!context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Installe manuellement via le menu du navigateur',
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                  },
-                  icon: const Icon(Icons.download),
-                  label: const Text('Installer la version web'),
-                ),
-              ),
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.download),
+                    label: const Text('Installer la version web'),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
